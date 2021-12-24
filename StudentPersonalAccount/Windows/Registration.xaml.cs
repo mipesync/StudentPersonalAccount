@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using StudentPersonalAccount.Classes;
 
 namespace StudentPersonalAccount.Windows
 {
@@ -26,6 +27,14 @@ namespace StudentPersonalAccount.Windows
         public Registration()
         {
             InitializeComponent();
+            textBoxes.Add(loginTextBox);
+            textBoxes.Add(emailTextBox);
+            passwordBoxes.Add(passTextBox);
+            passwordBoxes.Add(repeatPassTextBox);
+            icons.Add(loginIcon);
+            icons.Add(passIcon);
+            icons.Add(rePassIcon);
+            icons.Add(emailIcon);
         }
 
         private void authButton_Click(object sender, RoutedEventArgs e)
@@ -37,10 +46,15 @@ namespace StudentPersonalAccount.Windows
         }
 
         private DispatcherTimer timer = new DispatcherTimer();
+        private static List<TextBox> textBoxes = new List<TextBox>();
+        private static List<PasswordBox> passwordBoxes = new List<PasswordBox>();
+        private static List<PackIcon> icons = new List<PackIcon>();
+
+        private SetErrorProperty setErrorProperty = new SetErrorProperty();
 
         private void regButton_Click(object sender, RoutedEventArgs e)
         {
-            ColorErrorSet("Clear");
+
             using (var context = new UserContext())
             {
                 var login = loginTextBox.Text;
@@ -50,17 +64,17 @@ namespace StudentPersonalAccount.Windows
 
                 if (login.Length < 1)
                 {
-                    ColorErrorSet("NullLogin");
+                    setErrorProperty.SetProperty(loginTextBox, loginIcon, "Fill in the field!");
                 }
 
                 if (email.Length > 1)
                 {
                     if (email.IndexOf('@') < 1 || email.IndexOf('.') < 0)
                     {
-                        ColorErrorSet("IncorrectEmail");
+                        setErrorProperty.SetProperty(emailTextBox, emailIcon, "Incorrect email!");
                     }
                 }
-                else ColorErrorSet("NullEmail");
+                else setErrorProperty.SetProperty(emailTextBox, emailIcon, "Fill in the field!");
 
                 if (pass == rePass && pass.Length >= 8)
                 {
@@ -68,12 +82,21 @@ namespace StudentPersonalAccount.Windows
                     context.Users.Add(user);
                     context.SaveChanges();
                     MessageBox.Show("Done!");
+                } else if (pass.Length <= 0)
+                {
+                    setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
                 } else if (pass.Length < 8)
                 {
-                    ColorErrorSet("ShortPass");
+                    setErrorProperty.SetProperty(passTextBox, passIcon, "ShortPass");
                 } else if (pass != rePass)
                 {
-                    ColorErrorSet("DifferentPass");
+                    setErrorProperty.SetProperty(passTextBox, passIcon, "Different passwords!");
+                    setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Different passwords!");
+                }
+
+                if (rePass.Length <= 0)
+                {
+                    setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Fill in the field!");
                 }
             }
 
@@ -84,53 +107,8 @@ namespace StudentPersonalAccount.Windows
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            ColorErrorSet("Clear");
+            setErrorProperty.ClearProperty(textBoxes, icons, passwordBoxes);
             timer.Stop();
-        }
-
-        private void ColorErrorSet(string state)
-        {
-            switch (state)
-            {
-                case "DifferentPass":
-                    HintAssist.SetHelperText(passTextBox, "Different passwords!");
-                    passIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    rePassIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    passTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    HintAssist.SetHelperText(repeatPassTextBox, "Different passwords!");
-                    repeatPassTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    break;
-                case "Clear":
-                    passIcon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    rePassIcon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    passTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    repeatPassTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    loginIcon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    loginTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    emailIcon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    emailTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                    break;
-                case "ShortPass":
-                    HintAssist.SetHelperText(passTextBox, "Password less than 8 char!");
-                    passIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    passTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    break;
-                case "NullLogin":
-                    HintAssist.SetHelperText(loginTextBox, "Fill in the field!");
-                    loginIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    loginTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    break;
-                case "IncorrectEmail":
-                    HintAssist.SetHelperText(emailTextBox, "Incorrect email!");
-                    emailIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    emailTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    break;
-                case "NullEmail":
-                    HintAssist.SetHelperText(emailTextBox, "Fill in the field!");
-                    emailIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    emailTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
-                    break;
-            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace StudentPersonalAccount.Windows
                 {
                     if (user.Password == pass)
                     {
-                        MessageBox.Show($"{user.Id}. {user.Login} {user.Password}");
+                        MessageBox.Show($"{user.Id}. {user.Login} {user.Password} {user.Email}");
                     }
                 }
             }
