@@ -55,11 +55,12 @@ namespace StudentPersonalAccount.Windows
 
                 if (email.Length > 1)
                 {
-                    if (email.IndexOf('@') < 0 && email.IndexOf('.') < 0)
+                    if (email.IndexOf('@') < 1 || email.IndexOf('.') < 0)
                     {
-
+                        ColorErrorSet("IncorrectEmail");
                     }
                 }
+                else ColorErrorSet("NullEmail");
 
                 if (pass == rePass && pass.Length >= 8)
                 {
@@ -106,6 +107,8 @@ namespace StudentPersonalAccount.Windows
                     repeatPassTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                     loginIcon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                     loginTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                    emailIcon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                    emailTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                     break;
                 case "ShortPass":
                     HintAssist.SetHelperText(passTextBox, "Password less than 8 char!");
@@ -118,6 +121,11 @@ namespace StudentPersonalAccount.Windows
                     loginTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
                     break;
                 case "IncorrectEmail":
+                    HintAssist.SetHelperText(emailTextBox, "Incorrect email!");
+                    emailIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
+                    emailTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
+                    break;
+                case "NullEmail":
                     HintAssist.SetHelperText(emailTextBox, "Fill in the field!");
                     emailIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
                     emailTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
