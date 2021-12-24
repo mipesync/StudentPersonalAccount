@@ -41,9 +41,9 @@
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0,15,0,0">
-                <materialDesign:PackIcon Kind="Email" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <materialDesign:PackIcon x:Name="emailIcon" Kind="Email" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 <TextBox
-                    x:Name="emaiTextBox"
+                    x:Name="emailTextBox"
                     materialDesign:HintAssist.Hint="Email"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" />
             </StackPanel>

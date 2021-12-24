@@ -46,11 +46,19 @@ namespace StudentPersonalAccount.Windows
                 var login = loginTextBox.Text;
                 var pass = passTextBox.Password;
                 var rePass = repeatPassTextBox.Password;
-                var email = emaiTextBox.Text;
+                var email = emailTextBox.Text;
 
                 if (login.Length < 1)
                 {
                     ColorErrorSet("NullLogin");
+                }
+
+                if (email.Length > 1)
+                {
+                    if (email.IndexOf('@') < 0 && email.IndexOf('.') < 0)
+                    {
+
+                    }
                 }
 
                 if (pass == rePass && pass.Length >= 8)
@@ -69,7 +77,7 @@ namespace StudentPersonalAccount.Windows
             }
 
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 3);
+            timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
         }
 
@@ -100,14 +108,19 @@ namespace StudentPersonalAccount.Windows
                     loginTextBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                     break;
                 case "ShortPass":
-                    HintAssist.SetHelperText(passTextBox, "Password less than 8 char");
+                    HintAssist.SetHelperText(passTextBox, "Password less than 8 char!");
                     passIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
                     passTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
                     break;
                 case "NullLogin":
-                    HintAssist.SetHelperText(loginTextBox, "Password less than 8 char");
+                    HintAssist.SetHelperText(loginTextBox, "Fill in the field!");
                     loginIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
                     loginTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
+                    break;
+                case "IncorrectEmail":
+                    HintAssist.SetHelperText(emailTextBox, "Fill in the field!");
+                    emailIcon.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
+                    emailTextBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
                     break;
             }
         }
