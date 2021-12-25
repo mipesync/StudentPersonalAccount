@@ -87,13 +87,13 @@ namespace StudentPersonalAccount.Windows
                 }
                 else setErrorProperty.SetProperty(emailTextBox, emailIcon, "Fill in the field!");
 
-                /*if (pass == rePass && pass.Length >= 8)
+                if (pass == rePass && pass.Length >= 8)
                 {
                     var user = new User { Login = login, Password = pass, Email = email };
                     context.Users.Add(user);
                     context.SaveChanges();
                     MessageBox.Show("Done!");
-                } else*/ if (pass.Length <= 0)
+                } else if (pass.Length <= 0)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
                 } else if (pass.Length < 8)
