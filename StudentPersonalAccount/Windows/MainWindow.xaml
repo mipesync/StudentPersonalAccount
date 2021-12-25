@@ -24,9 +24,16 @@
 
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Background="#FF4DB1E3"/>
+        <StackPanel Background="#FF4DB1E3" Orientation="Horizontal">
+            <Label Content="Personal account" Foreground="#DDFFFFFF" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        </StackPanel>
         <StackPanel Grid.Row="1" Background="#FF4DB1E3">
-            <RadioButton Content="Home" Height="50" Foreground="White" />
+            <RadioButton Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"/>
+            <RadioButton Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"/>
+            <RadioButton Content="Profile" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="#FF4DB1E3" Orientation="Horizontal">
+            <TextBox Width="250" Height="40" Margin="5" VerticalAlignment="Center" HorizontalContentAlignment="Left"/>
         </StackPanel>
     </Grid>
 </Window>
