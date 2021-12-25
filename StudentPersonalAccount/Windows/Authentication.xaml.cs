@@ -61,19 +61,24 @@ namespace StudentPersonalAccount.Windows
 
                 var users = context.Users.Where(p => p.Login == login);
 
+                string _userId = null;
+
                 foreach (var user in users)
                 {
-                    if (user.Login == null && user.Password == null && user.Email == null)
-                    {
-                        MessageBox.Show("Ты ебалай?");
-                    }
                     if (user.Password == pass)
                     {
+                        _userId = user.Id.ToString();
                         MessageBox.Show($"{user.Id}. {user.Login} {user.Password} {user.Email}");
                     }
                 }
+
+                if (_userId == null)
+                {
+                    MessageBox.Show("Ты ебалай, не такого челика");
+                }
             }
 
+            
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
