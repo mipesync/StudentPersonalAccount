@@ -87,32 +87,33 @@ namespace StudentPersonalAccount.Windows
                 }
                 else setErrorProperty.SetProperty(emailTextBox, emailIcon, "Fill in the field!");
 
-                if (pass == rePass && pass.Length >= 8)
+                /*if (pass == rePass && pass.Length >= 8)
                 {
                     var user = new User { Login = login, Password = pass, Email = email };
                     context.Users.Add(user);
                     context.SaveChanges();
                     MessageBox.Show("Done!");
-                } else if (pass.Length <= 0)
+                } else*/ if (pass.Length <= 0)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
                 } else if (pass.Length < 8)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Password less than 8 chars");
+                } else if (rePass.Length <= 0)
+                {
+                    setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Fill in the field!");
+                    goto Next;
                 } else if (pass != rePass)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Different passwords!");
                     setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Different passwords!");
                 }
 
-                if (rePass.Length <= 0)
-                {
-                    setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Fill in the field!");
-                }
+                
             }
             Next:
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 5);
+            timer.Interval = new TimeSpan(0, 0, 2);
             timer.Start();
         }
 

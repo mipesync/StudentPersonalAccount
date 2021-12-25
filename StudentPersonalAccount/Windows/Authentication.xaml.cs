@@ -53,10 +53,12 @@ namespace StudentPersonalAccount.Windows
                 if (pass.Length <= 0)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
+                    goto Next;
                 }
                 else if (pass.Length < 8)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Password less than 8 chars");
+                    goto Next;
                 }
 
                 var users = context.Users.Where(p => p.Login == login);
@@ -70,6 +72,8 @@ namespace StudentPersonalAccount.Windows
                         _userId = user.Id.ToString();
                         MessageBox.Show($"{user.Id}. {user.Login} {user.Password} {user.Email}");
                     }
+                    else setErrorProperty.SetProperty(passTextBox, passIcon, "Incorrect password!");
+                    goto Next;
                 }
 
                 if (login.Length > 0 && pass.Length > 8 && _userId == null)
@@ -78,7 +82,7 @@ namespace StudentPersonalAccount.Windows
                 }
             }
 
-            
+            Next:
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
