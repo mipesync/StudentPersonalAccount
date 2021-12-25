@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentPersonalAccount.MVVM
+namespace StudentPersonalAccount.MVVM.ViewModel
 {
     internal class MainViewModel : ObservableObject
     {
@@ -28,6 +28,7 @@ namespace StudentPersonalAccount.MVVM
         public MainViewModel()
         {
             ProfileVM = new ProfileViewModel();
+            CurrentView = ProfileVM;
         }
     }
 }
