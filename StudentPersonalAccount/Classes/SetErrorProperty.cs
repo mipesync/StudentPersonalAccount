@@ -25,6 +25,20 @@ namespace StudentPersonalAccount.Classes
             passwordBox.Foreground = new SolidColorBrush(Color.FromRgb(183, 58, 58));
         }
 
+        public void ClearProperty(TextBox textBox, PackIcon icon)
+        {
+            HintAssist.SetHelperText(textBox, "");
+            icon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+        }
+
+        public void ClearProperty(PasswordBox passwordBox, PackIcon icon)
+        {
+            HintAssist.SetHelperText(passwordBox, "At least 8 characters");
+            icon.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            passwordBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+        }
+
         public void ClearProperty(List<TextBox> textBoxes, List<PackIcon> packIcons, List<PasswordBox> passwordBoxes)
         {
             foreach (var textBox in textBoxes)

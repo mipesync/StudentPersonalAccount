@@ -87,7 +87,7 @@ namespace StudentPersonalAccount.Windows
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
                 } else if (pass.Length < 8)
                 {
-                    setErrorProperty.SetProperty(passTextBox, passIcon, "ShortPass");
+                    setErrorProperty.SetProperty(passTextBox, passIcon, "Password less than 8 chars");
                 } else if (pass != rePass)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Different passwords!");

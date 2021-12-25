@@ -1,4 +1,5 @@
-﻿using StudentPersonalAccount.DBContext;
+﻿using StudentPersonalAccount.Classes;
+using StudentPersonalAccount.DBContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace StudentPersonalAccount.Windows
 {
@@ -33,6 +35,9 @@ namespace StudentPersonalAccount.Windows
             this.Close();
         }
 
+        private DispatcherTimer timer = new DispatcherTimer();
+        private SetErrorProperty setErrorProperty = new SetErrorProperty();
+
         private void authButton_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new UserContext())
@@ -40,16 +45,45 @@ namespace StudentPersonalAccount.Windows
                 var login = loginTextBox.Text;
                 var pass = passTextBox.Password;
 
+                if (login.Length < 1)
+                {
+                    setErrorProperty.SetProperty(loginTextBox, loginIcon, "Fill in the field!");
+                }
+
+                if (pass.Length <= 0)
+                {
+                    setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
+                }
+                else if (pass.Length < 8)
+                {
+                    setErrorProperty.SetProperty(passTextBox, passIcon, "Password less than 8 chars");
+                }
+
                 var users = context.Users.Where(p => p.Login == login);
 
                 foreach (var user in users)
                 {
+                    if (user.Login == null && user.Password == null && user.Email == null)
+                    {
+                        MessageBox.Show("Ты ебалай?");
+                    }
                     if (user.Password == pass)
                     {
                         MessageBox.Show($"{user.Id}. {user.Login} {user.Password} {user.Email}");
                     }
                 }
             }
+
+            timer.Tick += Timer_Tick;
+            timer.Interval = new TimeSpan(0, 0, 5);
+            timer.Start();
+        }
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            setErrorProperty.ClearProperty(loginTextBox, loginIcon);
+            setErrorProperty.ClearProperty(passTextBox, passIcon);
+            timer.Stop();
         }
     }
 }

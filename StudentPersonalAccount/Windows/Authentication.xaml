@@ -18,14 +18,14 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,30,0,0">
             <Label Content="Authentication" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Account" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,5,0" />
+                <materialDesign:PackIcon x:Name="loginIcon" Kind="Account" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,5,0" />
                 <TextBox
                     x:Name="loginTextBox"
                     materialDesign:HintAssist.Hint="Login" Width="150" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch">
-                <materialDesign:PackIcon Kind="Key" Margin="0,15,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <materialDesign:PackIcon x:Name="passIcon" Kind="Key" Margin="0,15,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 <PasswordBox
                     x:Name="passTextBox"
                     materialDesign:HintAssist.Hint="Password"
