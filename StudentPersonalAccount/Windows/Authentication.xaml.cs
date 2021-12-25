@@ -72,9 +72,9 @@ namespace StudentPersonalAccount.Windows
                     }
                 }
 
-                if (_userId == null)
+                if (login.Length > 0 && pass.Length > 8 && _userId == null)
                 {
-                    MessageBox.Show("Ты ебалай, не такого челика");
+                    setErrorProperty.SetProperty(loginTextBox, loginIcon, "User not found!");
                 }
             }
 

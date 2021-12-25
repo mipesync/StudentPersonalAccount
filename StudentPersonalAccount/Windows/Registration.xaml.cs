@@ -62,9 +62,20 @@ namespace StudentPersonalAccount.Windows
                 var rePass = repeatPassTextBox.Password;
                 var email = emailTextBox.Text;
 
+                var _users = context.Users.Where(p => p.Login == login);
+
                 if (login.Length < 1)
                 {
                     setErrorProperty.SetProperty(loginTextBox, loginIcon, "Fill in the field!");
+                }
+
+                foreach (var _user in _users)
+                {
+                    if (_user.Login == login)
+                    {
+                        setErrorProperty.SetProperty(loginTextBox, loginIcon, "There is already such a user!");
+                        goto Next;
+                    }
                 }
 
                 if (email.Length > 1)
@@ -99,7 +110,7 @@ namespace StudentPersonalAccount.Windows
                     setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Fill in the field!");
                 }
             }
-
+            Next:
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
