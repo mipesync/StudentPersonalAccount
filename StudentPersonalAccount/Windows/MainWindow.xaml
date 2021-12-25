@@ -34,9 +34,11 @@
             <Label Content="Personal account" Foreground="#DDFFFFFF" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Background="#FF4DB1E3">
+            <RadioButton x:Name="homeButton" Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14" 
+                         Command="{Binding HomeViewCommand}" IsChecked="True" Click="homeButton_Click"/>
             <RadioButton Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"/>
-            <RadioButton Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"/>
-            <RadioButton Content="Profile" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"/>
+            <RadioButton x:Name="profileButton" Content="Profile" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"
+                         Command="{Binding ProfileViewCommand}" Click="profileButton_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Background="#FF38A0D4" Orientation="Horizontal">
             <TextBox
@@ -50,6 +52,6 @@
                 CaretBrush="White" materialDesign:HintAssist.Foreground="White" materialDesign:TextFieldAssist.UnderlineBrush="White" FlowDirection="LeftToRight"/>
         </StackPanel>
 
-        <ContentControl Grid.Row="1" Grid.Column="1" Margin="10" Content="{Binding CurrentView}"/>
+        <ContentControl x:Name="mainControl" Grid.Row="1" Grid.Column="1" Margin="10" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="StudentPersonalAccount.MVVM.View.HomeView"
+﻿<UserControl x:Class="StudentPersonalAccount.MVVM.View.ProfileView"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
             TextElement.FontWeight="Regular"

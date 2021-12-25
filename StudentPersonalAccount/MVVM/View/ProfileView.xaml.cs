@@ -18,9 +18,9 @@ namespace StudentPersonalAccount.MVVM.View
     /// <summary>
     /// Логика взаимодействия для HomeView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class ProfileView : UserControl
     {
-        public HomeView()
+        public ProfileView()
         {
             InitializeComponent();
         }

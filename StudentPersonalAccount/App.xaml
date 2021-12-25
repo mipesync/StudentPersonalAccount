@@ -17,7 +17,7 @@
                 <materialDesign:CustomColorTheme x:Name="x_DarkBlue" PrimaryColor="#FF0077BE" SecondaryColor="#FF3F8300" InvalidatesImplicitDataTemplateResources="True"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <DataTemplate DataType="{x:Type viewModel:ProfileViewModel}">
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
             </DataTemplate>
         </ResourceDictionary>

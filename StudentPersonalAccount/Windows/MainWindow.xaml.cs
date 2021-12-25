@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentPersonalAccount.MVVM.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,18 @@ namespace StudentPersonalAccount.Windows
         public MainWindow()
         {
             InitializeComponent();
+            mainControl.Content = new HomeView();
+        }
+
+        private void profileButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainControl.Content = new ProfileView();
+        }
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            mainControl.Content = new HomeView();
         }
     }
 }
