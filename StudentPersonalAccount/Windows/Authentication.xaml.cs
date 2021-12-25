@@ -38,45 +38,51 @@ namespace StudentPersonalAccount.Windows
         private DispatcherTimer timer = new DispatcherTimer();
         private SetErrorProperty setErrorProperty = new SetErrorProperty();
 
+        public static string? Login;
+        public static string? Pass;
+
         private void authButton_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new UserContext())
             {
-                var login = loginTextBox.Text;
-                var pass = passTextBox.Password;
+                Login = loginTextBox.Text;
+                Pass = passTextBox.Password;
 
-                if (login.Length < 1)
+                if (Login.Length < 1)
                 {
                     setErrorProperty.SetProperty(loginTextBox, loginIcon, "Fill in the field!");
                 }
 
-                if (pass.Length <= 0)
+                if (Pass.Length <= 0)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
                     goto Next;
                 }
-                else if (pass.Length < 8)
+                else if (Pass.Length < 8)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Password less than 8 chars");
                     goto Next;
                 }
 
-                var users = context.Users.Where(p => p.Login == login);
+                var users = context.Users.Where(p => p.Login == Login);
 
-                string _userId = null;
+                string? _userId = null;
 
                 foreach (var user in users)
                 {
-                    if (user.Password == pass)
+                    if (user.Password == Pass)
                     {
                         _userId = user.Id.ToString();
-                        MessageBox.Show($"{user.Id}. {user.Login} {user.Password} {user.Email}");
+                        MainWindow mainWindow = new MainWindow();
+                        Hide();
+                        mainWindow.Show();
+                        Close();
                     }
                     else setErrorProperty.SetProperty(passTextBox, passIcon, "Incorrect password!");
                     goto Next;
                 }
 
-                if (login.Length > 0 && pass.Length > 8 && _userId == null)
+                if (Login.Length > 0 && Pass.Length > 8 && _userId == null)
                 {
                     setErrorProperty.SetProperty(loginTextBox, loginIcon, "User not found!");
                 }

@@ -16,13 +16,12 @@
     <StackPanel>
         <TextBlock Foreground="Black" Text="Profile" FontSize="22"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch">
-            <TextBox Text="Second name" Width="200" />
-            <TextBox Text="First name" Width="200" Margin="0,10,0,0" />
-            <TextBox Text="Last name" Width="200" Margin="0,10,0,0" />
-            <TextBox Text="Email" Width="200" Margin="0,10,0,0" />
-            <TextBox Text="Group number" Width="200" Margin="0,10,0,0" />
-            <TextBox Text="Phone" Width="200" Margin="0,10,0,0" />
-            <Button Content="Button" Margin="0,50,0,0"/>
+            <TextBox x:Name="secondNameTextBox" Text="Second name" Width="200" />
+            <TextBox x:Name="firstNameTextBox" Text="First name" Width="200" Margin="0,10,0,0" />
+            <TextBox x:Name="lastNameTextBox" Text="Last name" Width="200" Margin="0,10,0,0" />
+            <TextBox x:Name="groupNumberTextBox" Text="Group number" Width="200" Margin="0,10,0,0" />
+            <TextBox x:Name="phoneTextBox" Text="Phone" Width="200" Margin="0,10,0,0" />
+            <Button x:Name="saveButton" Content="Button" Margin="0,50,0,0" Click="saveButton_Click"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
