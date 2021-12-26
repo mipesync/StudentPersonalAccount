@@ -27,21 +27,20 @@ namespace StudentPersonalAccount.Windows
         {
             InitializeComponent();
             mainControl.Content = new RegistrationView();
-            CheckedObject();
+            CheckObject();
+            OpenWindowCheck();
         }
 
         private static bool closingState = false;
         public static object? ViewObject = "";
 
-        private async void CheckedObject()
+        private async void CheckObject()
         {
             while (true)
             {
                 await Task.Delay(1);
 
                 object? viewObject = ViewObject;
-                object? authViewObj = new AuthenticationView(),
-                        regViewObj = new RegistrationView();
 
                 switch (viewObject?.ToString())
                 {
@@ -57,11 +56,18 @@ namespace StudentPersonalAccount.Windows
                 {
                     break;
                 }
+            }
+        }
 
-                MainWindow mainWindow = new MainWindow();
-                if (mainWindow.IsActive)
+        private async void OpenWindowCheck()
+        {
+            while (true)
+            {
+                await Task.Delay(1);
+
+                if (MainWindow.OpenState == true)
                 {
-                    Environment.Exit(0);
+                    Close();
                 }
             }
         }

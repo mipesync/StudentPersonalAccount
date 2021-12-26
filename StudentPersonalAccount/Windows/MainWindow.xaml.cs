@@ -20,9 +20,12 @@ namespace StudentPersonalAccount.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool OpenState = false;
+
         public MainWindow()
         {
             InitializeComponent();
+            OpenState = true;
             mainControl.Content = new HomeView();
         }
 
