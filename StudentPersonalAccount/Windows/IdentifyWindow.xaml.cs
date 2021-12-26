@@ -38,6 +38,7 @@ namespace StudentPersonalAccount.Windows
             while (true)
             {
                 await Task.Delay(1);
+
                 object? viewObject = ViewObject;
                 object? authViewObj = new AuthenticationView(),
                         regViewObj = new RegistrationView();
@@ -51,14 +52,16 @@ namespace StudentPersonalAccount.Windows
                         mainControl.Content = ViewObject;
                         break;
                 }
+
                 if (closingState == true)
                 {
                     break;
                 }
+
                 MainWindow mainWindow = new MainWindow();
                 if (mainWindow.IsActive)
                 {
-                    Close();
+                    Environment.Exit(0);
                 }
             }
         }
