@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="StudentPersonalAccount.MVVM.View.RegistrationView"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentPersonalAccount"
+        mc:Ignorable="d" Height="450" Width="300" >
+    <StackPanel x:Name="rootStackPanel" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,30,0,0">
+        <Label Content="Registration" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Margin="0,59,0,0">
+            <materialDesign:PackIcon x:Name="loginIcon" Kind="Account" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0" />
+            <TextBox
+                    x:Name="loginTextBox"
+                    materialDesign:HintAssist.Hint="Login" Width="150" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            </TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0,15,0,0">
+            <materialDesign:PackIcon x:Name="passIcon" Kind="Key" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <PasswordBox
+                    x:Name="passTextBox"
+                    materialDesign:HintAssist.Hint="Password"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    materialDesign:HintAssist.HelperText="At least 8 characters" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" Cursor="IBeam" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0,20,0,0">
+            <materialDesign:PackIcon x:Name="rePassIcon" Kind="Key" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0" />
+            <PasswordBox
+                    x:Name="repeatPassTextBox"
+                    materialDesign:HintAssist.Hint="Repeat password"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0,15,0,0">
+            <materialDesign:PackIcon x:Name="emailIcon" Kind="Email" Margin="0,0,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <TextBox
+                    x:Name="emailTextBox"
+                    materialDesign:HintAssist.Hint="Email"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" />
+        </StackPanel>
+        <Button x:Name="authButton"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                ToolTip="MaterialDesignFlatButton"
+                Content="Authentication" FontSize="10" Padding="0,0,0,0" Margin="0,54,0,0" Cursor="Hand" Click="authButton_Click" />
+        <Button x:Name="regButton" Content="Registration" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="regButton_Click"/>
+    </StackPanel>
+</UserControl>

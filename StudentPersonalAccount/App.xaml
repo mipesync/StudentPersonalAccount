@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:StudentPersonalAccount"
              xmlns:view="clr-namespace:StudentPersonalAccount.MVVM.View"    
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="StudentPersonalAccount.App"
-             StartupUri="Windows/Authentication.xaml">
+             StartupUri="Windows/IdentifyWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
