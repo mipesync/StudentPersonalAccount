@@ -74,10 +74,7 @@ namespace StudentPersonalAccount.MVVM.View
                     {
                         _userId = user.Id.ToString();
                         MainWindow mainWindow = new MainWindow();
-                        IdentifyWindow identifyWindow = new IdentifyWindow();
-                        identifyWindow.Hide();
                         mainWindow.Show();
-                        identifyWindow.Close();
                     }
                     else setErrorProperty.SetProperty(passTextBox, passIcon, "Incorrect password!");
                     goto Next;

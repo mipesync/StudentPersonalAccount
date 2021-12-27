@@ -31,7 +31,7 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                var usersAdd = context.Users.Where(p => p.Login == Authentication.Login);
+                /*var usersAdd = context.Users.Where(p => p.Login == "lolik123");
 
                 User userAdd = new User();
 
@@ -50,11 +50,9 @@ namespace StudentPersonalAccount.MVVM.View
                     LastName = lastName, GroupNumber = groupNumber, Phone = phone, User = userAdd};
 
                 context.UserDatas.Add(userData);
-                context.SaveChanges();
+                context.SaveChanges();*/
 
-                var usersGet = context.Users.Where(p => p.Login == Authentication.Login);
-
-                User userGet = new User();
+                var usersGet = context.Users.Where(p => p.Login == "lolik123");
 
                 foreach (var _user in usersGet)
                 {

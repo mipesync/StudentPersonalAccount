@@ -1,4 +1,6 @@
-﻿using StudentPersonalAccount.MVVM.View;
+﻿using StudentPersonalAccount.DBContext;
+using StudentPersonalAccount.MVVM.View;
+using StudentPersonalAccount.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace StudentPersonalAccount.Windows
@@ -27,6 +30,23 @@ namespace StudentPersonalAccount.Windows
             InitializeComponent();
             OpenState = true;
             mainControl.Content = new HomeView();
+            using (var context = new UserContext())
+            {
+                var users = context.Users.Where(p => p.Login == "lolik123");
+
+                foreach (var user in users)
+                {
+                    var sdsd = user.UserData?.SecondName;
+                    FSNameLabel.Content = $"{user.UserData?.SecondName} {user.UserData?.FirstName}";
+                    title.Content = sdsd;
+                }
+
+            }
+            GetUser();
+        }
+
+        private void GetUser()
+        {
         }
 
         private void profileButton_Click(object sender, RoutedEventArgs e)
@@ -36,7 +56,6 @@ namespace StudentPersonalAccount.Windows
 
         private void homeButton_Click(object sender, RoutedEventArgs e)
         {
-
             mainControl.Content = new HomeView();
         }
     }
