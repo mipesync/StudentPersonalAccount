@@ -1,4 +1,5 @@
-﻿using StudentPersonalAccount.DBContext;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentPersonalAccount.DBContext;
 using StudentPersonalAccount.Windows;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                /*var usersAdd = context.Users.Where(p => p.Login == "lolik123");
+                var usersAdd = context.Users.Where(p => p.Login == AuthenticationView.Login);
 
                 User userAdd = new User();
 
@@ -50,16 +51,7 @@ namespace StudentPersonalAccount.MVVM.View
                     LastName = lastName, GroupNumber = groupNumber, Phone = phone, User = userAdd};
 
                 context.UserDatas.Add(userData);
-                context.SaveChanges();*/
-
-                var usersGet = context.Users.Where(p => p.Login == "lolik123");
-
-                foreach (var _user in usersGet)
-                {
-                    MessageBox.Show($"{_user.Id}. {_user.Login} - {_user.Password}\n" +
-                        $"{_user.UserData?.SecondName} {_user.UserData?.FirstName} {_user.UserData?.LastName}\n" +
-                        $"{_user.UserData?.Phone} {_user.UserData.GroupNumber} {_user.Email}");
-                }
+                context.SaveChanges();
             }
         }
     }

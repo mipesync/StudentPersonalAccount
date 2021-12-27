@@ -1,4 +1,5 @@
-﻿using StudentPersonalAccount.DBContext;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentPersonalAccount.DBContext;
 using StudentPersonalAccount.MVVM.View;
 using StudentPersonalAccount.Windows;
 using System;
@@ -30,23 +31,21 @@ namespace StudentPersonalAccount.Windows
             InitializeComponent();
             OpenState = true;
             mainControl.Content = new HomeView();
-            using (var context = new UserContext())
-            {
-                var users = context.Users.Where(p => p.Login == "lolik123");
-
-                foreach (var user in users)
-                {
-                    var sdsd = user.UserData?.SecondName;
-                    FSNameLabel.Content = $"{user.UserData?.SecondName} {user.UserData?.FirstName}";
-                    title.Content = sdsd;
-                }
-
-            }
             GetUser();
         }
 
         private void GetUser()
         {
+            using (var context = new UserContext())
+            {
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+
+                foreach (var user in users.Include(p => p.UserData))
+                {
+                    FSNameLabel.Content = $"{user.UserData?.SecondName} {user.UserData?.FirstName}";
+                    GNLabel.Content = user.UserData?.GroupNumber;
+                }
+            }
         }
 
         private void profileButton_Click(object sender, RoutedEventArgs e)
