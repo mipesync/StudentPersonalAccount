@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using StudentPersonalAccount.DBContext;
 using StudentPersonalAccount.MVVM.View;
 using StudentPersonalAccount.Windows;
@@ -32,6 +33,7 @@ namespace StudentPersonalAccount.Windows
             OpenState = true;
             mainControl.Content = new HomeView();
             GetUser();
+            CheckProfileImageChange();
         }
 
         private void GetUser()
@@ -62,6 +64,30 @@ namespace StudentPersonalAccount.Windows
         {
             mainControl.Content = new ProfileView();
             profileButton.IsChecked = true;
+        }
+
+        public void CheckProfileImageChange()
+        {
+            string FileName = string.Empty;
+
+            using (var context = new UserContext())
+            {
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+
+                foreach (var user in users.Include(p => p.UserData))
+                {
+                    if (user.UserData?.ProfilePhoto != FileName)
+                    {
+                        FileName = user.UserData?.ProfilePhoto;
+                        profileImage.ImageSource = new BitmapImage(new Uri(FileName));
+                    }
+                }
+            }
+        }
+
+        public void CheckProfileImageChange(string FileName)
+        {            
+            profileImage.ImageSource = new BitmapImage(new Uri(FileName));
         }
     }
 }

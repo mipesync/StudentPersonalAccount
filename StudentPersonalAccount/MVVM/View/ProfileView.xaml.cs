@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using StudentPersonalAccount.DBContext;
 using StudentPersonalAccount.Windows;
 using System;
@@ -26,7 +27,10 @@ namespace StudentPersonalAccount.MVVM.View
         public ProfileView()
         {
             InitializeComponent();
+            CheckProfileImageChange();
         }
+
+        private string? FileName;
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -53,6 +57,50 @@ namespace StudentPersonalAccount.MVVM.View
                 context.UserDatas.Add(userData);
                 context.SaveChanges();
             }
+        }
+        private void profileImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            FileName = openFileDialog.FileName;       
+            
+            using (var context = new UserContext())
+            {
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+
+                foreach (var user in users.Include(p => p.UserData))
+                {
+                    user.UserData.ProfilePhoto = FileName;
+                }
+
+                context.SaveChanges();
+            }
+            profileImage.ImageSource = new BitmapImage(new Uri(FileName));
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.CheckProfileImageChange(FileName);
+
+            CheckProfileImageChange();
+        }
+
+        private void CheckProfileImageChange()
+        {
+            using (var context = new UserContext())
+            {
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+
+                foreach (var user in users.Include(p => p.UserData))
+                {
+                    if (user.UserData?.ProfilePhoto != FileName)
+                    {
+                        FileName = user.UserData?.ProfilePhoto;
+                        profileImage.ImageSource = new BitmapImage(new Uri(FileName));
+                    }
+                }
+            }
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.CheckProfileImageChange(FileName);
         }
     }
 }

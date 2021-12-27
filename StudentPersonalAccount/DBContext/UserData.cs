@@ -14,6 +14,7 @@ namespace StudentPersonalAccount.DBContext
         public string? LastName { get; set; }
         public string? Phone { get; set; }
         public string GroupNumber { get; set; } = null!;
+        public string ProfilePhoto { get; set; } = null!;
 
         public int UserId { get; set; }
         public User? User { get; set; }
