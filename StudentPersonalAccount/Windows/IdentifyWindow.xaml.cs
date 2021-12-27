@@ -26,7 +26,7 @@ namespace StudentPersonalAccount.Windows
         public IdentifyWindow()
         {
             InitializeComponent();
-            mainControl.Content = new RegistrationView();
+            mainControl.Content = new AuthenticationView();
             CheckObject();
             OpenWindowCheck();
         }

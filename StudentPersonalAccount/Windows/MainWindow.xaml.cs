@@ -57,5 +57,11 @@ namespace StudentPersonalAccount.Windows
         {
             mainControl.Content = new HomeView();
         }
+
+        private void profileImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            mainControl.Content = new ProfileView();
+            profileButton.IsChecked = true;
+        }
     }
 }

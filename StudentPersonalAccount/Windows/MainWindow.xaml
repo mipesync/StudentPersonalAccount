@@ -46,10 +46,10 @@
                     CaretBrush="White" materialDesign:HintAssist.Foreground="White" materialDesign:TextFieldAssist.UnderlineBrush="White" FlowDirection="LeftToRight"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="40" Margin="0,0,10,0">
-                    <Label x:Name="FSNameLabel" Content="FSL" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12"/>
-                    <Label x:Name="GNLabel" Content="GN" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12"/>
+                    <Label x:Name="FSNameLabel" Content="FSL" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,8,4,0" FontWeight="Bold"/>
+                    <Label x:Name="GNLabel" Content="GN" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,0,4,4" FontWeight="Thin"/>
                 </StackPanel>
-                <Image Height="40" Width="40" HorizontalAlignment="Right" Margin="0,0,20,0" Cursor="Hand" Source="/Windows/user.png"/>
+                <Image x:Name="profileImage" Height="40" Width="40" HorizontalAlignment="Right" Margin="0,0,20,0" Cursor="Hand" Source="/Windows/user.png" MouseLeftButtonDown="profileImage_MouseLeftButtonDown"/>
             </StackPanel>            
         </Grid>
         <ContentControl x:Name="mainControl" Grid.Row="1" Grid.Column="1" Margin="10"/>
