@@ -58,7 +58,7 @@ namespace StudentPersonalAccount.MVVM.View
                 {
                     MessageBox.Show($"{_user.Id}. {_user.Login} - {_user.Password}\n" +
                         $"{_user.UserData?.SecondName} {_user.UserData?.FirstName} {_user.UserData?.LastName}\n" +
-                        $"{_user.UserData?.Phone} {_user.UserData?.GroupNumber} {_user.Email}");
+                        $"{_user.UserData?.Phone} {_user.UserData.GroupNumber} {_user.Email}");
                 }
             }
         }
