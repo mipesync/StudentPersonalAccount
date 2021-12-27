@@ -30,10 +30,11 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Background="#FF4DB1E3">
             <RadioButton x:Name="homeButton" Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14" 
-                         Command="{Binding HomeViewCommand}" IsChecked="True" Click="homeButton_Click" Cursor="Hand"/>
+                         Command="{Binding HomeViewCommand}" IsChecked="True" Click="homeButton_Click" Cursor="Hand" UseLayoutRounding="False"/>
             <RadioButton Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14" Cursor="Hand"/>
             <RadioButton x:Name="profileButton" Content="Profile" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"
                          Command="{Binding ProfileViewCommand}" Click="profileButton_Click" Cursor="Hand"/>
+
         </StackPanel>
         <Grid Grid.Column="1" Background="#FF38A0D4">
             <TextBox Style="{StaticResource MaterialDesignFilledTextBox}"
@@ -46,8 +47,8 @@
                     CaretBrush="White" materialDesign:HintAssist.Foreground="White" materialDesign:TextFieldAssist.UnderlineBrush="White" FlowDirection="LeftToRight"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="40" Margin="0,0,10,0">
-                    <Label x:Name="FSNameLabel" Content="FSL" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,8,4,0" FontWeight="Bold"/>
-                    <Label x:Name="GNLabel" Content="GN" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,0,4,4" FontWeight="Thin"/>
+                    <Label x:Name="FSNameLabel" Content="User name" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,8,4,0" FontWeight="Bold"/>
+                    <Label x:Name="GNLabel" Content="Group number" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,0,4,4" FontWeight="Thin"/>
                 </StackPanel>
                 <Image x:Name="profileImage" Height="40" Width="40" HorizontalAlignment="Right" Margin="0,0,20,0" Cursor="Hand" Source="/Windows/user.png" MouseLeftButtonDown="profileImage_MouseLeftButtonDown"/>
             </StackPanel>            

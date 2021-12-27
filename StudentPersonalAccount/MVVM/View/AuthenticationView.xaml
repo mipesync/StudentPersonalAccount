@@ -12,14 +12,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentPersonalAccount"
-        mc:Ignorable="d" Height="450" Width="300">
+        mc:Ignorable="d" Height="450" Width="300" KeyDown="UserControl_KeyDown">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,30,0,0">
         <Label Content="Authentication" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon x:Name="loginIcon" Kind="Account" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,5,0" />
             <TextBox
                     x:Name="loginTextBox"
-                    materialDesign:HintAssist.Hint="Login" Width="150" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    materialDesign:HintAssist.Hint="Login" Width="150" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TabIndex="1">
             </TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch">
@@ -28,12 +28,12 @@
                     x:Name="passTextBox"
                     materialDesign:HintAssist.Hint="Password"
                     materialDesign:TextFieldAssist.HasClearButton="True"
-                    materialDesign:HintAssist.HelperText="At least 8 characters" Margin="0,15,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" />
+                    materialDesign:HintAssist.HelperText="At least 8 characters" Margin="0,15,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" TabIndex="2" />
         </StackPanel>
         <Button x:Name="regButton"
                 Style="{StaticResource MaterialDesignFlatButton}"
                 ToolTip="MaterialDesignFlatButton"
-                Content="Registration" FontSize="10" Padding="0,0,0,0" Margin="0,100,0,0" Cursor="Hand" Click="regButton_Click" />
-        <Button x:Name="authButton" Content="Authentication" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="authButton_Click"/>
+                Content="Registration" FontSize="10" Padding="0,0,0,0" Margin="0,100,0,0" Cursor="Hand" Click="regButton_Click" TabIndex="3" />
+        <Button x:Name="authButton" Content="Authentication" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="authButton_Click" TabIndex="4"/>
     </StackPanel>
 </UserControl>
