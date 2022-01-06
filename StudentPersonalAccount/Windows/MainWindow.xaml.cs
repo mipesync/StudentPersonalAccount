@@ -26,6 +26,7 @@ namespace StudentPersonalAccount.Windows
     public partial class MainWindow : Window
     {
         public static bool OpenState = false;
+        public static string? FileName;
 
         public MainWindow()
         {
@@ -34,6 +35,7 @@ namespace StudentPersonalAccount.Windows
             mainControl.Content = new HomeView();
             GetUser();
             CheckProfileImageChange();
+            CheckProfileImageChange("");
         }
 
         private void GetUser()
@@ -66,9 +68,9 @@ namespace StudentPersonalAccount.Windows
             profileButton.IsChecked = true;
         }
 
-        public void CheckProfileImageChange()
+        private void CheckProfileImageChange()
         {
-            string FileName = string.Empty;
+            string? FileName = string.Empty;
 
             using (var context = new UserContext())
             {
@@ -79,15 +81,24 @@ namespace StudentPersonalAccount.Windows
                     if (user.UserData?.ProfilePhoto != FileName)
                     {
                         FileName = user.UserData?.ProfilePhoto;
-                        profileImage.ImageSource = new BitmapImage(new Uri(FileName));
+                        profileImage.ImageSource = new BitmapImage(new Uri($"Res/{FileName}", UriKind.Relative));
                     }
                 }
             }
         }
 
-        public void CheckProfileImageChange(string FileName)
-        {            
-            profileImage.ImageSource = new BitmapImage(new Uri(FileName));
+        private async void CheckProfileImageChange(string hyi)
+        {
+            while (true)
+            {
+                await Task.Delay(1000);
+
+                if (FileName != null)
+                {
+                    profileImage.ImageSource = new BitmapImage(new Uri($"Res/{FileName}", UriKind.Relative));
+                }
+            }
+
         }
     }
 }

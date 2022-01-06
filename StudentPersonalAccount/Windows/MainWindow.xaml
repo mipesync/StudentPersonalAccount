@@ -52,7 +52,7 @@
                 </StackPanel>
                 <Ellipse x:Name="profileImageEllipse" Width="50" Height="50" Margin="0,0,20,0" MouseLeftButtonDown="profileImage_MouseLeftButtonDown" Cursor="Hand">
                     <Ellipse.Fill>
-                        <ImageBrush x:Name="profileImage" ImageSource="/Windows/user.png" />
+                        <ImageBrush x:Name="profileImage" />
                     </Ellipse.Fill>
                 </Ellipse>
             </StackPanel>            

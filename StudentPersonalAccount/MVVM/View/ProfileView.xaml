@@ -16,11 +16,29 @@
     <StackPanel>
         <TextBlock Foreground="Black" Text="Profile" FontSize="22"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Stretch">
-            <Ellipse x:Name="profileImageEllipse" Width="150" Height="150" Margin="0,0,100,0" MouseLeftButtonDown="profileImage_MouseLeftButtonDown" Cursor="Hand" VerticalAlignment="Top" Stroke="#FF2196F3">
-                <Ellipse.Fill>
-                    <ImageBrush x:Name="profileImage" ImageSource="/Windows/user.png" TileMode="Tile"/>
-                </Ellipse.Fill>
-            </Ellipse>
+            <Grid>
+                <Ellipse x:Name="profileImageEllipse" Width="150" Height="150" Margin="0,0,100,0"
+                         Cursor="Hand" VerticalAlignment="Top"
+                         Stroke="#FF2196F3" StrokeThickness="3">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="profileImage" TileMode="Tile"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Border x:Name="elipseImageChanger" Width="144" Height="144" Margin="0,3,100,0"
+                         Cursor="Hand" VerticalAlignment="Top"
+                         MouseEnter="profileImageEllipse_MouseEnter" MouseLeave="profileImageEllipse_MouseLeave" 
+                        Opacity="0" Background="#A5000000" CornerRadius="100,100,100,100">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Opacity="100">
+                        <Button x:Name="profileImageChange" Style="{StaticResource MaterialDesignFlatButton}"
+                                ToolTip="MaterialDesignFlatButton"
+                                Content="Изменить" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" Click="profileImageChange_Click"/>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                ToolTip="MaterialDesignFlatButton"
+                                Content="Удалить" Foreground="#FFC30000" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
             <StackPanel>
                 <TextBox x:Name="secondNameTextBox" materialDesign:HintAssist.Hint="Second name" Width="200" />
                 <TextBox x:Name="firstNameTextBox" materialDesign:HintAssist.Hint="First name" Width="200" Margin="0,10,0,0" />

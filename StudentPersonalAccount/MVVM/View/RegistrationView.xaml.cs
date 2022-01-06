@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Microsoft.EntityFrameworkCore;
 using StudentPersonalAccount.Classes;
 using StudentPersonalAccount.DBContext;
 using StudentPersonalAccount.Windows;
@@ -61,6 +62,8 @@ namespace StudentPersonalAccount.MVVM.View
 
                 var _users = context.Users.Where(p => p.Login == login);
 
+                User userData = new User();
+
                 if (login.Length < 1)
                 {
                     setErrorProperty.SetProperty(loginTextBox, loginIcon, "Fill in the field!");
@@ -86,8 +89,12 @@ namespace StudentPersonalAccount.MVVM.View
 
                 if (pass == rePass && pass.Length >= 8)
                 {
-                    var user = new User { Login = login, Password = pass, Email = email };
+                    var user = new User { Login = login, Password = pass, Email = email};
                     context.Users.Add(user);
+
+                    var uData = new UserData { FirstName = "Guest", ProfilePhoto = "user.png", 
+                                                User = user};
+                    context.UserDatas.Add(uData);
                     context.SaveChanges();
                     MessageBox.Show("Done!");
                 }
@@ -109,8 +116,6 @@ namespace StudentPersonalAccount.MVVM.View
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Different passwords!");
                     setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Different passwords!");
                 }
-
-
             }
         Next:
             timer.Tick += Timer_Tick;

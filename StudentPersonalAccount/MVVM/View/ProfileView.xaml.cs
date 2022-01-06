@@ -4,6 +4,7 @@ using StudentPersonalAccount.DBContext;
 using StudentPersonalAccount.Windows;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace StudentPersonalAccount.MVVM.View
 {
@@ -36,14 +38,7 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                var usersAdd = context.Users.Where(p => p.Login == AuthenticationView.Login);
-
-                User userAdd = new User();
-
-                foreach (var _user in usersAdd)
-                {
-                    userAdd = _user;
-                }
+                var userAdd = context.Users.FirstOrDefault(p => p.Login == AuthenticationView.Login);
 
                 string secondName = secondNameTextBox.Text,
                     firstName = firstNameTextBox.Text,
@@ -58,30 +53,6 @@ namespace StudentPersonalAccount.MVVM.View
                 context.SaveChanges();
             }
         }
-        private void profileImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-            FileName = openFileDialog.FileName;       
-            
-            using (var context = new UserContext())
-            {
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
-
-                foreach (var user in users.Include(p => p.UserData))
-                {
-                    user.UserData.ProfilePhoto = FileName;
-                }
-
-                context.SaveChanges();
-            }
-            profileImage.ImageSource = new BitmapImage(new Uri(FileName));
-
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.CheckProfileImageChange(FileName);
-
-            CheckProfileImageChange();
-        }
 
         private void CheckProfileImageChange()
         {
@@ -94,13 +65,73 @@ namespace StudentPersonalAccount.MVVM.View
                     if (user.UserData?.ProfilePhoto != FileName)
                     {
                         FileName = user.UserData?.ProfilePhoto;
-                        profileImage.ImageSource = new BitmapImage(new Uri(FileName));
+                        profileImage.ImageSource = new BitmapImage(new Uri($"Res/{FileName}", UriKind.Relative));
                     }
                 }
             }
 
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.CheckProfileImageChange(FileName);
+            MainWindow.FileName = FileName;
+        }
+
+        bool isEnter = false;
+
+        private async void profileImageEllipse_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (isEnter == false)
+            {
+                while (elipseImageChanger.Opacity < 1)
+                {
+                    await Task.Delay(1);
+
+                    elipseImageChanger.Opacity += 0.10;
+                }
+
+                isEnter = true;
+            }
+        }
+
+        private async void profileImageEllipse_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (isEnter == true)
+            {
+                while (elipseImageChanger.Opacity > 0)
+                {
+                    await Task.Delay(1);
+
+                    elipseImageChanger.Opacity -= 0.10;
+                }
+
+                isEnter = false;
+            }
+        }
+
+        private void profileImageChange_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            FileName = openFileDialog.FileName;
+            string uriFilename = Path.GetFileName(openFileDialog.FileName);
+
+            FileInfo fileInfo = new FileInfo(FileName);
+            fileInfo.CopyTo(@$"Res/{uriFilename}");
+
+
+            using (var context = new UserContext())
+            {
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+
+                foreach (var user in users.Include(p => p.UserData))
+                {
+                    user.UserData.ProfilePhoto = uriFilename;
+                }
+
+                context.SaveChanges();
+            }
+            profileImage.ImageSource = new BitmapImage(new Uri($"Res/{uriFilename}", UriKind.Relative));
+
+            MainWindow.FileName = FileName;
+
+            CheckProfileImageChange();
         }
     }
 }
