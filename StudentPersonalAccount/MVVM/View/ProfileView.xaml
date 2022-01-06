@@ -32,9 +32,9 @@
                         <Button x:Name="profileImageChange" Style="{StaticResource MaterialDesignFlatButton}"
                                 ToolTip="MaterialDesignFlatButton"
                                 Content="Изменить" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" Click="profileImageChange_Click"/>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        <Button x:Name="profileImageDelete" Style="{StaticResource MaterialDesignFlatButton}"
                                 ToolTip="MaterialDesignFlatButton"
-                                Content="Удалить" Foreground="#FFC30000" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                                Content="Удалить" Foreground="#FFC30000" Background="{x:Null}" BorderBrush="{x:Null}" Click="profileImageDelete_Click"/>
                     </StackPanel>
                 </Border>
             </Grid>

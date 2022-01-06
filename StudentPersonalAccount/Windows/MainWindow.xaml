@@ -31,7 +31,7 @@
         <StackPanel Grid.Row="1" Background="#FF4DB1E3">
             <RadioButton x:Name="homeButton" Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14" 
                          Command="{Binding HomeViewCommand}" IsChecked="True" Click="homeButton_Click" Cursor="Hand" UseLayoutRounding="False"/>
-            <RadioButton Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14" Cursor="Hand"/>
+            <!--<RadioButton Content="Home" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14" Cursor="Hand"/>-->
             <RadioButton x:Name="profileButton" Content="Profile" Height="50" Foreground="White" Style="{StaticResource MenuButtonTheme}" FontSize="14"
                          Command="{Binding ProfileViewCommand}" Click="profileButton_Click" Cursor="Hand"/>
 

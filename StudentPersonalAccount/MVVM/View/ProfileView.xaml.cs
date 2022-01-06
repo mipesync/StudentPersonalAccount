@@ -29,28 +29,67 @@ namespace StudentPersonalAccount.MVVM.View
         public ProfileView()
         {
             InitializeComponent();
+            textBoxes.Add(secondNameTextBox);
+            textBoxes.Add(firstNameTextBox);
+            textBoxes.Add(lastNameTextBox);
+            textBoxes.Add(groupNumberTextBox);
+            textBoxes.Add(phoneTextBox);
             CheckProfileImageChange();
+            fillPersonInfo();
         }
 
         private string? FileName;
+
+        List<TextBox> textBoxes = new List<TextBox>();
+
+        private void fillPersonInfo()
+        {
+            using (var context = new UserContext())
+            {
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+
+                foreach (var user in users.Include(p => p.UserData))
+                {
+                    string[] userData = new string[5] { user.UserData?.SecondName, user.UserData?.FirstName,
+                         user.UserData?.LastName, user.UserData?.GroupNumber, user.UserData?.Phone };
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (userData[i] != null && userData[i] != "Guest") { textBoxes[i].Text = userData[i]; }
+                    }
+                }
+            }
+        }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new UserContext())
             {
-                var userAdd = context.Users.FirstOrDefault(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
 
-                string secondName = secondNameTextBox.Text,
+                foreach (var userAdd in users.Include(p => p.UserData))
+                {
+
+                    string secondName = secondNameTextBox.Text,
                     firstName = firstNameTextBox.Text,
                     lastName = lastNameTextBox.Text,
                     groupNumber = groupNumberTextBox.Text,
                     phone = phoneTextBox.Text;
 
-                var userData = new UserData { FirstName = firstName, SecondName = secondName,
-                    LastName = lastName, GroupNumber = groupNumber, Phone = phone, User = userAdd};
+                    var userData = new UserData
+                    {
+                        FirstName = firstName,
+                        SecondName = secondName,
+                        LastName = lastName,
+                        GroupNumber = groupNumber,
+                        Phone = phone,
+                        ProfilePhoto = FileName,
+                        User = userAdd
+                    };
 
-                context.UserDatas.Add(userData);
-                context.SaveChanges();
+                    context.UserDatas.Add(userData);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -130,6 +169,29 @@ namespace StudentPersonalAccount.MVVM.View
             profileImage.ImageSource = new BitmapImage(new Uri($"Res/{uriFilename}", UriKind.Relative));
 
             MainWindow.FileName = FileName;
+
+            CheckProfileImageChange();
+        }
+
+        private void profileImageDelete_Click(object sender, RoutedEventArgs e)
+        {
+            string? oldImage = string.Empty;
+
+            using (var context = new UserContext())
+            { 
+                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+
+                foreach (var user in users.Include(p => p.UserData))
+                {
+                    oldImage = user.UserData?.ProfilePhoto;
+                    user.UserData.ProfilePhoto = "user.png";
+                }
+
+                context.SaveChanges();
+            }
+            profileImage.ImageSource = new BitmapImage(new Uri($"Res/user.png", UriKind.Relative));
+
+            MainWindow.FileName = "user.png";
 
             CheckProfileImageChange();
         }
