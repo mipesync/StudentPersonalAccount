@@ -57,6 +57,7 @@ namespace StudentPersonalAccount.MVVM.View
             {
                 var login = loginTextBox.Text;
                 var pass = passTextBox.Password;
+                var hash = BCrypt.Net.BCrypt.HashPassword(pass);
                 var rePass = repeatPassTextBox.Password;
                 var email = emailTextBox.Text;
 
@@ -89,8 +90,9 @@ namespace StudentPersonalAccount.MVVM.View
 
                 if (pass == rePass && pass.Length >= 8)
                 {
-                    var user = new User { Login = login, Password = pass, Email = email};
+                    var user = new User { Login = login, Password = hash, Email = email};
                     context.Users.Add(user);
+
 
                     var uData = new UserData { FirstName = "Guest", ProfilePhoto = "user.png", 
                                                 User = user};

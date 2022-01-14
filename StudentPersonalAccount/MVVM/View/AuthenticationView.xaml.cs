@@ -39,7 +39,7 @@ namespace StudentPersonalAccount.MVVM.View
         private SetErrorProperty setErrorProperty = new SetErrorProperty();
 
         public static string? Login;
-        public static string? Pass;
+        private static string? Pass;
 
         private void authButton_Click(object sender, RoutedEventArgs e)
         {
@@ -70,7 +70,9 @@ namespace StudentPersonalAccount.MVVM.View
 
                 foreach (var user in users)
                 {
-                    if (user.Password == Pass)
+                    var hash = user.Password;
+
+                    if (BCrypt.Net.BCrypt.Verify(Pass, hash))
                     {
                         _userId = user.Id.ToString();
                         MainWindow mainWindow = new MainWindow();
