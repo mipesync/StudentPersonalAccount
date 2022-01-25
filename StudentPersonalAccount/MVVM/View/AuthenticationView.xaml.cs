@@ -35,7 +35,7 @@ namespace StudentPersonalAccount.MVVM.View
             identifyWindow = identify;
         }
 
-        IdentifyWindow identifyWindow;
+        IdentifyWindow? identifyWindow;
 
         private void regButton_Click(object sender, RoutedEventArgs e)
         {
