@@ -73,11 +73,11 @@ namespace StudentPersonalAccount.MVVM.View
                 foreach (var userAdd in users.Include(p => p.UserData))
                 {
 
-                    string secondName = secondNameTextBox.Text,
-                    firstName = firstNameTextBox.Text,
-                    lastName = lastNameTextBox.Text,
-                    groupNumber = groupNumberTextBox.Text,
-                    phone = phoneTextBox.Text;
+                    string secondName = secondNameTextBox.Text.Trim(),
+                    firstName = firstNameTextBox.Text.Trim(),
+                    lastName = lastNameTextBox.Text.Trim(),
+                    groupNumber = groupNumberTextBox.Text.Trim(),
+                    phone = phoneTextBox.Text.Trim();
 
                     var userData = new UserData
                     {
@@ -93,6 +93,11 @@ namespace StudentPersonalAccount.MVVM.View
                     context.UserDatas.Add(userData);
                     context.SaveChanges();
                 }
+            }
+
+            foreach (var elem in textBoxes)
+            {
+                elem.IsEnabled = false;
             }
         }
 
@@ -197,6 +202,14 @@ namespace StudentPersonalAccount.MVVM.View
             MainWindow.FileName = "user.png";
 
             CheckProfileImageChange();
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var elem in textBoxes)
+            {
+                elem.IsEnabled = true;
+            }
         }
     }
 }

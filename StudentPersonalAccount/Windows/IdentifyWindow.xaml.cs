@@ -26,9 +26,8 @@ namespace StudentPersonalAccount.Windows
         public IdentifyWindow()
         {
             InitializeComponent();
-            mainControl.Content = new AuthenticationView();
+            mainControl.Content = new AuthenticationView(this);
             CheckObject();
-            OpenWindowCheck();
         }
 
         private static bool closingState = false;
@@ -55,19 +54,6 @@ namespace StudentPersonalAccount.Windows
                 if (closingState == true)
                 {
                     break;
-                }
-            }
-        }
-
-        private async void OpenWindowCheck()
-        {
-            while (true)
-            {
-                await Task.Delay(1);
-
-                if (MainWindow.OpenState == true)
-                {
-                    Close();
                 }
             }
         }

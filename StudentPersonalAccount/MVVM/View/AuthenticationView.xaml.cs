@@ -24,11 +24,18 @@ namespace StudentPersonalAccount.MVVM.View
     /// </summary>
     public partial class AuthenticationView : UserControl
     {
-
         public AuthenticationView()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
+
+        public AuthenticationView(IdentifyWindow identify)
+        {
+            InitializeComponent();
+            identifyWindow = identify;
+        }
+
+        IdentifyWindow identifyWindow;
 
         private void regButton_Click(object sender, RoutedEventArgs e)
         {
@@ -45,8 +52,8 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                Login = loginTextBox.Text;
-                Pass = passTextBox.Password;
+                Login = loginTextBox.Text.Trim();
+                Pass = passTextBox.Password.Trim();
 
                 if (Login.Length < 1)
                 {
@@ -77,6 +84,7 @@ namespace StudentPersonalAccount.MVVM.View
                         _userId = user.Id.ToString();
                         MainWindow mainWindow = new MainWindow(Login);
                         mainWindow.Show();
+                        this.identifyWindow.Close();
                     }
                     else setErrorProperty.SetProperty(passTextBox, passIcon, "Incorrect password!");
                     goto Next;

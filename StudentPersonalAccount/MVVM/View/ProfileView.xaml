@@ -40,12 +40,13 @@
             </Grid>
 
             <StackPanel>
-                <TextBox x:Name="secondNameTextBox" materialDesign:HintAssist.Hint="Second name" Width="200" />
-                <TextBox x:Name="firstNameTextBox" materialDesign:HintAssist.Hint="First name" Width="200" Margin="0,10,0,0" />
-                <TextBox x:Name="lastNameTextBox" materialDesign:HintAssist.Hint="Last name" Width="200" Margin="0,10,0,0" />
-                <TextBox x:Name="groupNumberTextBox" materialDesign:HintAssist.Hint="Group number" Width="200" Margin="0,10,0,0" />
-                <TextBox x:Name="phoneTextBox" materialDesign:HintAssist.Hint="Phone" Width="200" Margin="0,10,0,0" />
-                <Button x:Name="saveButton" Content="Button" Margin="0,50,0,0" Click="saveButton_Click"/>
+                <TextBox x:Name="secondNameTextBox" materialDesign:HintAssist.Hint="Second name" Width="200" IsEnabled="False" Cursor="IBeam" />
+                <TextBox x:Name="firstNameTextBox" materialDesign:HintAssist.Hint="First name" Width="200" Margin="0,10,0,0" IsEnabled="False" Cursor="IBeam" />
+                <TextBox x:Name="lastNameTextBox" materialDesign:HintAssist.Hint="Last name" Width="200" Margin="0,10,0,0" IsEnabled="False" Cursor="IBeam" />
+                <TextBox x:Name="groupNumberTextBox" materialDesign:HintAssist.Hint="Group number" Width="200" Margin="0,10,0,0" IsEnabled="False" Cursor="IBeam" />
+                <TextBox x:Name="phoneTextBox" materialDesign:HintAssist.Hint="Phone" Width="200" Margin="0,10,0,0" IsEnabled="False" Cursor="IBeam" />
+                <Button x:Name="editButton" Content="Редактировать" Margin="0,50,0,0" Click="editButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Foreground="Black" FontWeight="Regular"/>
+                <Button x:Name="saveButton" Content="Сохранить" Click="saveButton_Click"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>

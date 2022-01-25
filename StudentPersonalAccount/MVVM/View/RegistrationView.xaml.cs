@@ -55,11 +55,11 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                var login = loginTextBox.Text;
-                var pass = passTextBox.Password;
+                var login = loginTextBox.Text.Trim();
+                var pass = passTextBox.Password.Trim();
                 var hash = BCrypt.Net.BCrypt.HashPassword(pass);
-                var rePass = repeatPassTextBox.Password;
-                var email = emailTextBox.Text;
+                var rePass = repeatPassTextBox.Password.Trim();
+                var email = emailTextBox.Text.Trim();
 
                 var _users = context.Users.Where(p => p.Login == login);
 

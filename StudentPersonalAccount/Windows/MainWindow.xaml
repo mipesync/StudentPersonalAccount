@@ -50,11 +50,14 @@
                     <Label x:Name="FSNameLabel" Content="User name" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,8,4,0" FontWeight="Bold"/>
                     <Label x:Name="GNLabel" Content="Group number" HorizontalAlignment="Right" Foreground="#DDFFFFFF" FlowDirection="RightToLeft" FontSize="12" Padding="4,0,4,4" FontWeight="Thin"/>
                 </StackPanel>
-                <Ellipse x:Name="profileImageEllipse" Width="50" Height="50" Margin="0,0,20,0" MouseLeftButtonDown="profileImage_MouseLeftButtonDown" Cursor="Hand">
+                <Ellipse x:Name="profileImageEllipse" Width="50" Height="50" Margin="0,0,10,0" MouseLeftButtonDown="profileImage_MouseLeftButtonDown" Cursor="Hand">
                     <Ellipse.Fill>
                         <ImageBrush x:Name="profileImage" />
                     </Ellipse.Fill>
                 </Ellipse>
+                <Button x:Name="exitButton"
+                    Content="{materialDesign:PackIcon ExitToApp}"
+                    ToolTip="Exit" Background="{x:Null}" BorderBrush="{x:Null}" Width="25" Height="25" Padding="0,0,0,0" Margin="0,0,10,0" Click="exitButton_Click" />               
             </StackPanel>            
         </Grid>
         <ContentControl x:Name="mainControl" Grid.Row="1" Grid.Column="1" Margin="10"/>

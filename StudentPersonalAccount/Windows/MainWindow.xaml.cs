@@ -103,5 +103,12 @@ namespace StudentPersonalAccount.Windows
             }
 
         }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            IdentifyWindow identifyWindow = new();
+            identifyWindow.Show();
+            Close();
+        }
     }
 }
