@@ -28,9 +28,12 @@ namespace StudentPersonalAccount.Windows
         public static bool OpenState = false;
         public static string? FileName;
 
-        public MainWindow()
+        string Login;
+
+        public MainWindow(string login)
         {
             InitializeComponent();
+            Login = login;
             OpenState = true;
             mainControl.Content = new HomeView();
             GetUser();
@@ -42,7 +45,7 @@ namespace StudentPersonalAccount.Windows
         {
             using (var context = new UserContext())
             {
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == Login);
 
                 foreach (var user in users.Include(p => p.UserData))
                 {
@@ -54,7 +57,7 @@ namespace StudentPersonalAccount.Windows
 
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            mainControl.Content = new ProfileView();
+            mainControl.Content = new ProfileView(Login);
         }
 
         private void homeButton_Click(object sender, RoutedEventArgs e)
@@ -64,7 +67,7 @@ namespace StudentPersonalAccount.Windows
 
         private void profileImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            mainControl.Content = new ProfileView();
+            mainControl.Content = new ProfileView(Login);
             profileButton.IsChecked = true;
         }
 
@@ -74,7 +77,7 @@ namespace StudentPersonalAccount.Windows
 
             using (var context = new UserContext())
             {
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == Login);
 
                 foreach (var user in users.Include(p => p.UserData))
                 {

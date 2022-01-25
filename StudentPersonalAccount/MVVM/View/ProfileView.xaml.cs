@@ -26,9 +26,10 @@ namespace StudentPersonalAccount.MVVM.View
     /// </summary>
     public partial class ProfileView : UserControl
     {
-        public ProfileView()
+        public ProfileView(string login)
         {
             InitializeComponent();
+            Login = login;
             textBoxes.Add(secondNameTextBox);
             textBoxes.Add(firstNameTextBox);
             textBoxes.Add(lastNameTextBox);
@@ -38,6 +39,8 @@ namespace StudentPersonalAccount.MVVM.View
             fillPersonInfo();
         }
 
+        private string Login;
+
         private string? FileName;
 
         List<TextBox> textBoxes = new List<TextBox>();
@@ -46,7 +49,7 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == Login);
 
                 foreach (var user in users.Include(p => p.UserData))
                 {
@@ -65,7 +68,7 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == Login);
 
                 foreach (var userAdd in users.Include(p => p.UserData))
                 {
@@ -97,7 +100,7 @@ namespace StudentPersonalAccount.MVVM.View
         {
             using (var context = new UserContext())
             {
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == Login);
 
                 foreach (var user in users.Include(p => p.UserData))
                 {
@@ -157,7 +160,7 @@ namespace StudentPersonalAccount.MVVM.View
 
             using (var context = new UserContext())
             {
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == Login);
 
                 foreach (var user in users.Include(p => p.UserData))
                 {
@@ -179,7 +182,7 @@ namespace StudentPersonalAccount.MVVM.View
 
             using (var context = new UserContext())
             { 
-                var users = context.Users.Where(p => p.Login == AuthenticationView.Login);
+                var users = context.Users.Where(p => p.Login == Login);
 
                 foreach (var user in users.Include(p => p.UserData))
                 {

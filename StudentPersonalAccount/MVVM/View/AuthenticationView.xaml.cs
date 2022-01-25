@@ -38,8 +38,8 @@ namespace StudentPersonalAccount.MVVM.View
         private DispatcherTimer timer = new DispatcherTimer();
         private SetErrorProperty setErrorProperty = new SetErrorProperty();
 
-        public static string? Login;
-        private static string? Pass;
+        private string? Login;
+        private string? Pass;
 
         private void authButton_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +75,7 @@ namespace StudentPersonalAccount.MVVM.View
                     if (BCrypt.Net.BCrypt.Verify(Pass, hash))
                     {
                         _userId = user.Id.ToString();
-                        MainWindow mainWindow = new MainWindow();
+                        MainWindow mainWindow = new MainWindow(Login);
                         mainWindow.Show();
                     }
                     else setErrorProperty.SetProperty(passTextBox, passIcon, "Incorrect password!");
