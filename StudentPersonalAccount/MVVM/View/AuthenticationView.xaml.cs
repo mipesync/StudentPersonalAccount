@@ -63,12 +63,12 @@ namespace StudentPersonalAccount.MVVM.View
                 if (Pass.Length <= 0)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Fill in the field!");
-                    goto Next;
+                    TickStart();
                 }
                 else if (Pass.Length < 8)
                 {
                     setErrorProperty.SetProperty(passTextBox, passIcon, "Password less than 8 chars");
-                    goto Next;
+                    TickStart();
                 }
 
                 var users = context.Users.Where(p => p.Login == Login);
@@ -84,10 +84,10 @@ namespace StudentPersonalAccount.MVVM.View
                         _userId = user.Id.ToString();
                         MainWindow mainWindow = new MainWindow(Login);
                         mainWindow.Show();
-                        this.identifyWindow.Close();
+                        this.identifyWindow?.Close();
                     }
                     else setErrorProperty.SetProperty(passTextBox, passIcon, "Incorrect password!");
-                    goto Next;
+                    TickStart();
                 }
 
                 if (Login.Length > 0 && Pass.Length > 8 && _userId == null)
@@ -95,8 +95,10 @@ namespace StudentPersonalAccount.MVVM.View
                     setErrorProperty.SetProperty(loginTextBox, loginIcon, "User not found!");
                 }
             }
+        }
 
-        Next:
+        private void TickStart()
+        {
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();

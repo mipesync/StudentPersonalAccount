@@ -75,7 +75,7 @@ namespace StudentPersonalAccount.MVVM.View
                     if (_user.Login == login)
                     {
                         setErrorProperty.SetProperty(loginTextBox, loginIcon, "There is already such a user!");
-                        goto Next;
+                        TickStart();
                     }
                 }
 
@@ -111,7 +111,7 @@ namespace StudentPersonalAccount.MVVM.View
                 else if (rePass.Length <= 0)
                 {
                     setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Fill in the field!");
-                    goto Next;
+                    TickStart();
                 }
                 else if (pass != rePass)
                 {
@@ -119,9 +119,12 @@ namespace StudentPersonalAccount.MVVM.View
                     setErrorProperty.SetProperty(repeatPassTextBox, rePassIcon, "Different passwords!");
                 }
             }
-        Next:
+        }
+
+        private void TickStart()
+        {
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 2);
+            timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
         }
 
