@@ -19,7 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Path = System.IO.Path;
 
-namespace StudentPersonalAccount.MVVM.View
+namespace StudentPersonalAccount.View
 {
     /// <summary>
     /// Логика взаимодействия для HomeView.xaml

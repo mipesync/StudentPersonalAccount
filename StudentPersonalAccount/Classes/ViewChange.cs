@@ -1,4 +1,4 @@
-﻿using StudentPersonalAccount.MVVM.View;
+﻿using StudentPersonalAccount.View;
 using StudentPersonalAccount.Windows;
 using System;
 using System.Collections.Generic;

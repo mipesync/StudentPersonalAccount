@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using StudentPersonalAccount.DBContext;
-using StudentPersonalAccount.MVVM.View;
+using StudentPersonalAccount.View;
 using StudentPersonalAccount.Windows;
 using System;
 using System.Collections.Generic;

@@ -19,7 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace StudentPersonalAccount.MVVM.View
+namespace StudentPersonalAccount.View
 {
     /// <summary>
     /// Логика взаимодействия для RegistrationView.xaml
@@ -57,7 +57,7 @@ namespace StudentPersonalAccount.MVVM.View
             {
                 var login = loginTextBox.Text.Trim();
                 var pass = passTextBox.Password.Trim();
-                var hash = BCrypt.Net.BCrypt.HashPassword(pass);
+                var hash = EncryptionFactory.Create().Encrypt(pass);
                 var rePass = repeatPassTextBox.Password.Trim();
                 var email = emailTextBox.Text.Trim();
 

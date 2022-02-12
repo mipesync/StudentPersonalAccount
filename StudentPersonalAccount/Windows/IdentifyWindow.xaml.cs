@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using StudentPersonalAccount.Classes;
-using StudentPersonalAccount.MVVM.View;
+using StudentPersonalAccount.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -43,10 +43,10 @@ namespace StudentPersonalAccount.Windows
 
                 switch (viewObject?.ToString())
                 {
-                    case "StudentPersonalAccount.MVVM.View.AuthenticationView":
+                    case "StudentPersonalAccount.View.AuthenticationView":
                         mainControl.Content = ViewObject;
                         break;
-                    case "StudentPersonalAccount.MVVM.View.RegistrationView":
+                    case "StudentPersonalAccount.View.RegistrationView":
                         mainControl.Content = ViewObject;
                         break;
                 }

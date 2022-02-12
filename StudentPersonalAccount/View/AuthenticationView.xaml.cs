@@ -17,7 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace StudentPersonalAccount.MVVM.View
+namespace StudentPersonalAccount.View
 {
     /// <summary>
     /// Логика взаимодействия для AuthenticationView.xaml
@@ -42,7 +42,7 @@ namespace StudentPersonalAccount.MVVM.View
             IdentifyWindow.ViewObject = new RegistrationView();
         }
 
-        private DispatcherTimer timer = new DispatcherTimer();
+        DispatcherTimer timer = new DispatcherTimer();
         private SetErrorProperty setErrorProperty = new SetErrorProperty();
 
         private string? Login;
@@ -79,7 +79,7 @@ namespace StudentPersonalAccount.MVVM.View
                 {
                     var hash = user.Password;
 
-                    if (BCrypt.Net.BCrypt.Verify(Pass, hash))
+                    if (EncryptionFactory.Create().Verify(Pass, hash))
                     {
                         _userId = user.Id.ToString();
                         MainWindow mainWindow = new MainWindow(Login);
